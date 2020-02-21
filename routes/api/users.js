@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 
 router.post("/signup", (req, res) => {
+    console.log(req);
     const { errors, isValid } = validateSignupInput(req.body);
 
     if (!isValid) {

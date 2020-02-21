@@ -26,11 +26,11 @@ export const logoutUser = () => ({
 
 export const login = user => dispatch => {
     return SessionAPIUtil.login(user).then(res => {
-    const { token } = res.data;
-    localStorage.setItem("jwtToken", token);
-    SessionAPIUtil.setAuthToken(token);
-    const decoded = jwt_decode(token);
-    dispatch(receiveCurrentUser(decoded));
+        const { token } = res.data;
+        localStorage.setItem("jwtToken", token);
+        SessionAPIUtil.setAuthToken(token);
+        const decoded = jwt_decode(token);
+        dispatch(receiveCurrentUser(decoded));
     })
     .catch(err => {
         dispatch(receiveErrors(err.response.data));
@@ -39,11 +39,11 @@ export const login = user => dispatch => {
 
 export const signup = user => dispatch => {
     return SessionAPIUtil.signup(user).then(res => {
-    const { token } = res.data;
-    localStorage.setItem("jwtToken", token);
-    SessionAPIUtil.setAuthToken(token);
-    const decoded = jwt_decode(token);
-    dispatch(receiveCurrentUser(decoded));
+        const { token } = res.data;
+        localStorage.setItem("jwtToken", token);
+        SessionAPIUtil.setAuthToken(token);
+        const decoded = jwt_decode(token);
+        dispatch(receiveCurrentUser(decoded));
     })
     .catch(err => {
         dispatch(receiveErrors(err.response.data));
