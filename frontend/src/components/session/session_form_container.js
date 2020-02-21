@@ -5,7 +5,7 @@ import { login, signup, clearErrors } from '../../actions/session_actions';
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.session.isAuthenticated,
-        errors: Object.values(state.errors.session)
+        // errors: Object.values(state.errors)
     }
 }
 
