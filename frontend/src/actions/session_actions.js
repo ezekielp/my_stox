@@ -24,17 +24,13 @@ export const logoutUser = () => ({
     type: RECEIVE_USER_LOGOUT
 })
 
-const loginLogic = res => {
+export const login = user => dispatch => {
+    return SessionAPIUtil.login(user).then(res => {
     const { token } = res.data;
     localStorage.setItem("jwtToken", token);
     SessionAPIUtil.setAuthToken(token);
     const decoded = jwt_decode(token);
     dispatch(receiveCurrentUser(decoded));
-}
-
-export const login = user => dispatch => {
-    return SessionAPIUtil.login(user).then(res => {
-        loginLogic(res);
     })
     .catch(err => {
         dispatch(receiveErrors(err.response.data));
@@ -43,7 +39,11 @@ export const login = user => dispatch => {
 
 export const signup = user => dispatch => {
     return SessionAPIUtil.signup(user).then(res => {
-        loginLogic(res);
+    const { token } = res.data;
+    localStorage.setItem("jwtToken", token);
+    SessionAPIUtil.setAuthToken(token);
+    const decoded = jwt_decode(token);
+    dispatch(receiveCurrentUser(decoded));
     })
     .catch(err => {
         dispatch(receiveErrors(err.response.data));
