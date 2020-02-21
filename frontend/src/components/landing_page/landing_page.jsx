@@ -1,5 +1,6 @@
 import React from 'react';
 import SessionFormContainer from '../session/session_form_container';
+import './landing_page.css';
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class LandingPage extends React.Component {
     render() {
         return (
           <div>
-            <p>Hello from the landing page component!</p>
+            <h1 className="main-heading">MyStox</h1>
             <SessionFormContainer />
           </div>
         );

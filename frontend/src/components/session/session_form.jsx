@@ -68,7 +68,7 @@ class SessionForm extends React.Component {
             return (
                 <div className="session-form-container">
                     <h3>Sign Up</h3>
-                    <form onSubmit={this.handleSubmit}>
+                    <form className="session-form" onSubmit={this.handleSubmit}>
                         <input
                             className="session-input"
                             type="text"
@@ -106,7 +106,7 @@ class SessionForm extends React.Component {
             return (
               <div className="session-form-container">
                 <h3>Log In</h3>
-                <form onSubmit={this.handleSubmit}>
+                <form className="session-form" onSubmit={this.handleSubmit}>
                   <input
                     className="session-input"
                     type="email"
