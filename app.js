@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const db = require("./config/keys").mongoURI;
 const mongoose = require("mongoose");
+const bodyParser = require('body-parser');
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -12,3 +13,11 @@ app.get("/", (req, res) => res.send("Hello, world!"));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+const users = require("./routes/api/users");
+const transactions = require("./routes/api/transactions");
+
+app.use("/api/users", users);
+app.use("/api/transactions", transactions);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
