@@ -11,6 +11,8 @@ const receiveStock = stock => {
 
 export const fetchStock = tickerSymbol => dispatch => {
   return fetchStockPrice(tickerSymbol)
-    .then(stockData => dispatch(receiveStock(stockData)))
+    .then(stockData => {
+      return dispatch(receiveStock(stockData))
+    })
     .catch(err => console.log(err))
 }

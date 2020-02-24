@@ -13,7 +13,6 @@ router.get(
     const url = `https://cloud.iexapis.com/stable/stock/${tickerSymbol}/quote?token=${apiKey}`;
 
     axios.get(url).then(stockData => {
-      // console.log(stockData);
       res.send(stockData.data);
     })
     .catch(err => console.log(err));

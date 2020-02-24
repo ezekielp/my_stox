@@ -5,7 +5,7 @@ const stocksReducer = (state = {}, action) => {
   switch(action.type) {
     case RECEIVE_STOCK:
       return {
-        stock: action.data
+        stock: action.stock.data
       }
     default:
       return state;

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 
+import { fetchStock } from '../../actions/stock_actions';
 import TransactionForm from './transaction_form';
 
 const mapStateToProps = state => {
@@ -10,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    fetchStock: tickerSymbol => dispatch(fetchStock(tickerSymbol))
   }
 }
 

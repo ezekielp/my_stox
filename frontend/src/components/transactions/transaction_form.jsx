@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fetchStockPrice } from '../../util/stocks_api_util';
+// import { fetchStockPrice } from '../../util/stocks_api_util';
 
 class TransactionForm extends React.Component {
   constructor(props) {
@@ -17,7 +17,8 @@ class TransactionForm extends React.Component {
 
   handleSubmit(e) {
     // debugger;
-    const stockData = fetchStockPrice(this.state.tickerSymbol);
+    this.props.fetchStock(this.state.tickerSymbol);
+    // const stockData = fetchStockPrice(this.state.tickerSymbol);
   }
 
   update(field) {

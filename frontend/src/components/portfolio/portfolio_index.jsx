@@ -1,7 +1,7 @@
 import React from 'react';
 
 import NavbarContainer from '../nav/navbar_container';
-import TransactionForm from '../transactions/transaction_form';
+import TransactionFormContainer from '../transactions/transaction_form_container';
 import './portfolio.css';
 
 class PortfolioIndex extends React.Component {
@@ -20,7 +20,7 @@ class PortfolioIndex extends React.Component {
           <h1 className="portfolio-index-header">Portfolio</h1>
           <div className="portfolio-index-container">
           </div>
-          <TransactionForm />
+          <TransactionFormContainer />
         </div>
 
       </div>
