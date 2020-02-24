@@ -12,4 +12,6 @@
   border-right: 1px solid gray;
 }
 
-
+.logout-li {
+  cursor: pointer;
+}

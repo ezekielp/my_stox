@@ -17,8 +17,8 @@ class PortfolioIndex extends React.Component {
       <div className="portfolio-page-container">
         <NavbarContainer />
         <div className="portfolio-page-below-nav-container">
+          <h1 className="portfolio-index-header">Portfolio</h1>
           <div className="portfolio-index-container">
-            <h1 className="portfolio-index-header">Portfolio</h1>
           </div>
           <TransactionForm />
         </div>

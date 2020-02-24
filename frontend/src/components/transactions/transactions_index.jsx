@@ -11,8 +11,11 @@ class TransactionsIndex extends React.Component {
 
   render() {
     return (
-      <div>
-        Hello from the Transactions component!
+      <div className="transactions-page-container">
+        <NavbarContainer />
+          <div className="transactions-index-container">
+            <h1 className="transactions-index-header">Transactions</h1>
+          </div>
       </div>
     )
   }
