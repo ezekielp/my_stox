@@ -7,6 +7,8 @@ const passport = require("passport");
 const users = require("./routes/api/users");
 const transactions = require("./routes/api/transactions");
 const passportAuth = require("./config/passport");
+require('dotenv').config();
+// Now, when writing your API call, you can use 'process.env.IEX_API_KEY'
 
 mongoose
   .connect(db, { useNewUrlParser: true })

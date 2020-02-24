@@ -49,4 +49,15 @@ router.post(
   }
 );
 
+// router.get(
+//   "/:ticker_symbol",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     const tickerSymbol = req.params.ticker_symbol;
+
+//   }
+// )
+
+
+
 module.exports = router;
