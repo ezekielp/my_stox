@@ -1,6 +1,8 @@
 import React from 'react';
 
 import NavbarContainer from '../nav/navbar_container';
+import TransactionForm from '../transactions/transaction_form';
+import './portfolio.css';
 
 class PortfolioIndex extends React.Component {
   constructor(props) {
@@ -12,8 +14,15 @@ class PortfolioIndex extends React.Component {
 
   render() {
     return (
-      <div className="portfolio-index-container">
+      <div className="portfolio-page-container">
         <NavbarContainer />
+        <div className="portfolio-page-below-nav-container">
+          <div className="portfolio-index-container">
+            <h1 className="portfolio-index-header">Portfolio</h1>
+          </div>
+          <TransactionForm />
+        </div>
+
       </div>
     )
   }
