@@ -17,8 +17,7 @@ class TransactionForm extends React.Component {
 
   handleSubmit(e) {
     // debugger;
-    const latestStockInfo = fetchStockPrice(this.state.tickerSymbol);
-    console.log(latestStockInfo);
+    const stockData = fetchStockPrice(this.state.tickerSymbol);
   }
 
   update(field) {

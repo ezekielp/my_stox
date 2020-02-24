@@ -3,11 +3,6 @@ import React from 'react';
 import NavbarContainer from '../nav/navbar_container';
 
 class TransactionsIndex extends React.Component {
-  // constructor(props) {
-  //   super(props)
-
-  // }
-
 
 
   render() {
