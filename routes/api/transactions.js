@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-// const mongoose = require('mongoose');
 const passport = require('passport');
 
 const Transaction = require('../../models/Transaction');
@@ -14,7 +13,7 @@ const _normalized = transactions => {
   return normalizedObj;
 }
 
-// An index of user transactions
+// Index of user transactions
 router.get(
   "/:user_id",
   passport.authenticate("jwt", { session: false }),
@@ -29,6 +28,7 @@ router.get(
   }
 );
 
+// Create a transaction
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
