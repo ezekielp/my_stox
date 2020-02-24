@@ -1,5 +1,6 @@
 import React from 'react';
 
+import NavbarContainer from '../nav/navbar_container';
 
 class PortfolioIndex extends React.Component {
   constructor(props) {
@@ -11,8 +12,8 @@ class PortfolioIndex extends React.Component {
 
   render() {
     return (
-      <div>
-        Hello from the portfolio component!
+      <div className="portfolio-index-container">
+        <NavbarContainer />
       </div>
     )
   }

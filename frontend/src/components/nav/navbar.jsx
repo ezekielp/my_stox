@@ -8,10 +8,12 @@ class Navbar extends React.Component {
     }
 
     render() {
+        const { currentUser, logout } = this.props;
+
         return (
 
             <ul className="navbar-ul">
-                <li></li>
+                <li>Hello, {currentUser.name}!</li>
                 <li>
                     <Link to="/portfolio">
                         Portfolio
@@ -22,7 +24,9 @@ class Navbar extends React.Component {
                         Transactions
                     </Link>
                 </li>
-                <li>Logout</li>
+                <li
+                    onClick={() => logout()}
+                >Logout</li>
             </ul>
 
 
