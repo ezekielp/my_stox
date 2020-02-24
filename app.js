@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const passport = require("passport");
 const users = require("./routes/api/users");
 const transactions = require("./routes/api/transactions");
+const stocks = require("./routes/api/stocks");
 const passportAuth = require("./config/passport");
 require('dotenv').config();
 // Now, when writing your API call, you can use 'process.env.IEX_API_KEY'
@@ -24,6 +25,12 @@ passportAuth(passport);
   
 app.use("/api/users", users);
 app.use("/api/transactions", transactions);
-  
+app.use("/api/stocks", stocks);
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));

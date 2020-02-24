@@ -1,17 +1,24 @@
 import React from 'react'
 
+import { fetchStockPrice } from '../../util/stocks_api_util';
+
 class TransactionForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       tickerSymbol: '',
-      quantity: ''
+      quantity: '',
+      errors: []
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
-
+    // debugger;
+    const latestStockInfo = fetchStockPrice(this.state.tickerSymbol);
+    console.log(latestStockInfo);
   }
 
   update(field) {
@@ -26,7 +33,7 @@ class TransactionForm extends React.Component {
     return (
       <div className="transaction-form-container">
         <h2>Make a new investment</h2>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input 
             type="text"
             className="transaction-form-input"
@@ -39,7 +46,7 @@ class TransactionForm extends React.Component {
             onChange={this.update('quantity')} />
           <input
             type="submit"
-            className=""
+            className="transaction-form-btn"
             value="Buy" />
         </form>
       </div>

@@ -3,9 +3,9 @@ import SessionFormContainer from '../session/session_form_container';
 import './landing_page.css';
 
 class LandingPage extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+    // constructor(props) {
+    //     super(props)
+    // }
 
     render() {
         return (
