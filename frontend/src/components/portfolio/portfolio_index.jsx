@@ -46,11 +46,17 @@ class PortfolioIndex extends React.Component {
         })
       })
       .then(res => {
-        console.log(this.state.portfolio);
         const tickerSymbols = Object.keys(this.state.portfolio).join(",").toLowerCase();
         fetchBatchPrices(tickerSymbols);
       })
     }
+  }
+
+  componentDidUpdate() {
+    // const quoteTickerSymbols = Object.keys(this.props.quotes);
+
+    // const tickerSymbols = Object.keys(this.state.portfolio).join(",").toLowerCase();
+    // fetchBatchPrices(tickerSymbols);
   }
 
   render() {

@@ -5,6 +5,7 @@ class TransactionForm extends React.Component {
     super(props);
 
     this.state = {
+      showForm: true,
       quantity: '',
       errors: []
     }
@@ -13,7 +14,7 @@ class TransactionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    const { currentStock, currentUser, createTransaction } = this.props;
+    const { currentStock, currentUser, createTransaction, receiveCurrentStockQuote } = this.props;
     const { symbol, companyName, latestPrice } = currentStock;
 
     const newTransaction = {
@@ -25,6 +26,12 @@ class TransactionForm extends React.Component {
     }
 
     createTransaction(newTransaction);
+    receiveCurrentStockQuote(this.props.currentStock);
+
+    this.setState({
+      quantity: '',
+      showForm: false
+    });
 
   }
 
@@ -42,7 +49,9 @@ class TransactionForm extends React.Component {
   }
 
   render() {
+    // debugger;
     if (!this.props.currentStock) return null;
+    if (!this.state.showForm) return null;
 
     let { symbol, companyName, latestPrice, latestTime, change, changePercent } = this.props.currentStock;
 
@@ -78,7 +87,8 @@ class TransactionForm extends React.Component {
             type="text"
             className="transaction-form-input"
             placeholder="Number of shares"
-            onChange={this.update('quantity')} />
+            onChange={this.update('quantity')}
+            value={this.state.quantity} />
           <input
             type="submit"
             className="transaction-form-btn"

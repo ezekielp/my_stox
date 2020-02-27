@@ -21,10 +21,13 @@ const mapStateToProps = state => {
 
   })
 
+  const quotes = state.entities.stocks.quotes ? state.entities.stocks.quotes : {};
+
   return {
     currentUser: state.session.user,
     transactions,
-    portfolio
+    portfolio,
+    quotes
   }
 }
 

@@ -14,6 +14,9 @@ class StockLookupForm extends React.Component {
 
   handleSubmit(e) {
     this.props.fetchStock(this.state.tickerSymbol);
+    this.setState({
+      tickerSymbol: ''
+    })
   }
 
   update(field) {
@@ -33,7 +36,8 @@ class StockLookupForm extends React.Component {
             type="text"
             className="transaction-form-input"
             placeholder="Ticker symbol"
-            onChange={this.update('tickerSymbol')} />
+            onChange={this.update('tickerSymbol')} 
+            value={this.state.tickerSymbol} />
           <input
             type="submit"
             className="transaction-form-btn"

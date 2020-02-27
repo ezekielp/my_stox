@@ -1,4 +1,4 @@
-import { RECEIVE_STOCK, RECEIVE_BATCH_STOCKS } from '../actions/stock_actions';
+import { RECEIVE_STOCK, RECEIVE_BATCH_STOCKS, RECEIVE_CURRENT_STOCK_QUOTE } from '../actions/stock_actions';
 
 const stocksReducer = (state = {}, action) => {
   // debugger;
@@ -19,6 +19,16 @@ const stocksReducer = (state = {}, action) => {
       return {
         ...state,
         currentStock: action.stock.data
+      }
+    case RECEIVE_CURRENT_STOCK_QUOTE:
+      let newQuotes = {};
+      if (state.quotes) {
+        newQuotes = Object.assign({}, state.quotes);
+      }
+      newQuotes[action.stock.symbol] = action.stock.latestPrice;
+      return {
+        ...state,
+        quotes: newQuotes
       }
     default:
       return state;
