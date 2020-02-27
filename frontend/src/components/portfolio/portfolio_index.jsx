@@ -13,20 +13,42 @@ class PortfolioIndex extends React.Component {
     let accountBalance = parseFloat(currentUser.accountBalance.$numberDecimal);
 
     this.state = {
-      accountBalance
+      accountBalance,
+      portfolio: {}
     }
 
   }
 
   componentDidMount() {
-    const { currentUser, fetchTransactions } = this.props;
+    const { transactions, currentUser, fetchTransactions } = this.props;
 
-    fetchTransactions(currentUser.id);
+    if (!transactions[0]) {
+      fetchTransactions(currentUser.id)
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(this.props);
   }
 
   render() {
 
     const accountBalance = this.state.accountBalance.toFixed(2);
+
+    // this.props.transactions.forEach(transaction => {
+    //   const { companyName, tickerSymbol, numberOfShares } = transaction;
+    //   let portfolio = { ...this.state.portfolio };
+
+    //   if (!this.state.portfolio[tickerSymbol]) {
+    //     portfolio[tickerSymbol] = { tickerSymbol, companyName, numberOfShares };
+    //   } else {
+    //     portfolio[tickerSymbol].numberOfShares += numberOfShares;
+    //   }
+
+    //   this.setState({
+    //     portfolio
+    //   })
+    // })
 
     return (
       <div className="portfolio-page-container">
