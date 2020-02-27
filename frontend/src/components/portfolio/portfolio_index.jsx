@@ -18,6 +18,12 @@ class PortfolioIndex extends React.Component {
 
   }
 
+  componentDidMount() {
+    const { currentUser, fetchTransactions } = this.props;
+
+    fetchTransactions(currentUser.id);
+  }
+
   render() {
 
     const accountBalance = this.state.accountBalance.toFixed(2);

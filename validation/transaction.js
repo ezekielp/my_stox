@@ -4,8 +4,8 @@ const validText = require('./valid-text');
 module.exports = function validateTransactionInput(transactionData) {
   let errors = {};
 
-  transactionData.companyName = validText(companyName) ? transactionData.companyName : "";
-  transactionData.tickerSymbol = validText(tickerSymbol) ? transactionData.tickerSymbol : "";
+  transactionData.companyName = validText(transactionData.companyName) ? transactionData.companyName : "";
+  transactionData.tickerSymbol = validText(transactionData.tickerSymbol) ? transactionData.tickerSymbol : "";
 
   if (Validator.isEmpty(transactionData.tickerSymbol)) {
     errors.tickerSymbol = "Ticker symbol is required";
