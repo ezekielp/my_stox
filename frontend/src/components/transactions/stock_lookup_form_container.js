@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 
 import { fetchStock } from '../../actions/stock_actions';
-import TransactionForm from './transaction_form';
+import StockLookupForm from './stock_lookup_form';
 
 const mapStateToProps = state => {
   return {
-    currentStock: state.entities.stocks.currentStock
+
   }
 }
 
@@ -15,4 +15,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionForm);
+export default connect(mapStateToProps, mapDispatchToProps)(StockLookupForm);

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import NavbarContainer from '../nav/navbar_container';
+import StockLookupFormContainer from '../transactions/stock_lookup_form_container'
 import TransactionFormContainer from '../transactions/transaction_form_container';
 import './portfolio.css';
 
@@ -8,17 +9,19 @@ class PortfolioIndex extends React.Component {
   constructor(props) {
     super(props)
 
-    let { currentUser } = this.props;
+    const { currentUser } = this.props;
+    let accountBalance = parseFloat(currentUser.accountBalance.$numberDecimal);
 
     this.state = {
-      accountBalance: parseInt(currentUser.accountBalance.$numberDecimal)
+      accountBalance
     }
 
   }
 
-
-
   render() {
+
+    const accountBalance = this.state.accountBalance.toFixed(2);
+
     return (
       <div className="portfolio-page-container">
         <NavbarContainer />
@@ -28,8 +31,9 @@ class PortfolioIndex extends React.Component {
           </div>
           <div className="portfolio-page-right-side-container">
             <div className="account-balance-container">
-              Current account balance: ${this.state.accountBalance.toFixed(2)}
+              Current account balance: ${accountBalance}
             </div>
+            <StockLookupFormContainer />
             <TransactionFormContainer />
           </div>
         </div>

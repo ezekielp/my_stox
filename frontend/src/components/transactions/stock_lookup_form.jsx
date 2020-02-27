@@ -1,13 +1,11 @@
 import React from 'react'
 
-// import { fetchStockPrice } from '../../util/stocks_api_util';
-
-class TransactionForm extends React.Component {
+class StockLookupForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      quantity: '',
+      tickerSymbol: '',
       errors: []
     }
 
@@ -15,7 +13,7 @@ class TransactionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    // debugger;
+    this.props.fetchStock(this.state.tickerSymbol);
   }
 
   update(field) {
@@ -27,27 +25,23 @@ class TransactionForm extends React.Component {
   }
 
   render() {
-    const { currentStock } = this.props;
-
-    if (!currentStock) return null;
-
     return (
       <div className="transaction-form-container">
-        <h2>Buy shares</h2>
+        <h2>Enter a ticker symbol to see current stock price</h2>
         <form onSubmit={this.handleSubmit}>
-          <input 
+          <input
             type="text"
             className="transaction-form-input"
-            placeholder="Number of shares"
-            onChange={this.update('quantity')} />
+            placeholder="Ticker symbol"
+            onChange={this.update('tickerSymbol')} />
           <input
             type="submit"
             className="transaction-form-btn"
-            value="Buy" />
+            value="Submit" />
         </form>
       </div>
     )
   }
 }
 
-export default TransactionForm;
+export default StockLookupForm;
