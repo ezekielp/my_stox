@@ -8,10 +8,10 @@ class PortfolioIndex extends React.Component {
   constructor(props) {
     super(props)
 
-    let { accountBalance } = this.props;
+    let { currentUser } = this.props;
 
     this.state = {
-      accountBalance
+      accountBalance: parseInt(currentUser.accountBalance.$numberDecimal)
     }
 
   }
@@ -28,7 +28,7 @@ class PortfolioIndex extends React.Component {
           </div>
           <div className="portfolio-page-right-side-container">
             <div className="account-balance-container">
-              Current account balance: 
+              Current account balance: ${this.state.accountBalance.toFixed(2)}
             </div>
             <TransactionFormContainer />
           </div>

@@ -4,6 +4,7 @@ import PortfolioIndex from './portfolio_index';
 
 
 const mapStateToProps = state => {
+  // debugger;
   return {
     currentUser: state.session.user
   }

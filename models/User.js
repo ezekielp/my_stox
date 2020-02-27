@@ -15,7 +15,7 @@ const UserSchema = new Schema({
     required: true
   },
   accountBalance: {
-    type: Decimal128,
+    type: mongoose.Decimal128,
     default: 5000.00
   }
   },

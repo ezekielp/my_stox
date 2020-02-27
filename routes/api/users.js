@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 
 router.post("/signup", (req, res) => {
-    console.log(req);
     const { errors, isValid } = validateSignupInput(req.body);
 
     if (!isValid) {
@@ -33,7 +32,7 @@ router.post("/signup", (req, res) => {
                     newUser
                         .save()
                         .then(user => {
-                            const payload = { id: user.id, email: user.email };
+                            const payload = { id: user.id, email: user.email, name: user.name, accountBalance: user.accountBalance };
 
                             jwt.sign(
                                 payload,
@@ -72,7 +71,7 @@ router.post("/login", (req, res) => {
 
         bcrypt.compare(password, user.password).then(isMatch => {
             if (isMatch) {
-                const payload = { id: user.id, email: user.email, name: user.name };
+                const payload = { id: user.id, email: user.email, name: user.name, accountBalance: user.accountBalance };
 
                 jwt.sign(
                     payload,
