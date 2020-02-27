@@ -23,12 +23,15 @@ router.get(
   "/batch/:ticker_symbols",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const tickerSymbols = req.params.ticker_symbols.join(",");
+    const tickerSymbols = req.params.ticker_symbols;
     const apiKey = process.env.IEX_API_KEY;
 
-    const url = `https://cloud.iexapis.com/stable/stock/market/batch/${tickerSymbols}/quote?token=${apiKey}`;
+    const url = `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickerSymbols}&types=quote&token=${apiKey}`;
+
+    // console.log("I'm in the proxy call!");
 
     axios.get(url).then(stockData => {
+      // console.log("I made the API call!");
       res.send(stockData.data);
     })
     .catch(err => console.log(err));

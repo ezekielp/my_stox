@@ -21,10 +21,12 @@ class PortfolioIndex extends React.Component {
   }
 
   componentDidMount() {
-    const { transactions, currentUser, fetchTransactions } = this.props;
+    const { transactions, currentUser, fetchTransactions, fetchBatchPrices } = this.props;
 
     if (!transactions[0]) {
-      fetchTransactions(currentUser.id).then(transactionsAction => {
+      fetchTransactions(currentUser.id)
+      .then(transactionsAction => {
+        console.log(transactionsAction);
         const fetchedTransactions = Object.values(transactionsAction.transactions.data);
         let portfolio = this.state.portfolio;
 
@@ -42,21 +44,13 @@ class PortfolioIndex extends React.Component {
           })
 
         })
-        console.log(fetchedTransactions);
-        console.log(this.state.portfolio);
       })
-      // I think you need to turn the above into a promise, and after
-      // the transactions have been fetched, you go retrieve the current
-      // price for all the stocks in the user's portfolio, so that
-      // you can display the current value of their holdings.
-      // So you batch up the ticker symbols of each stock in their holdings,
-      // then you send off that API request, and then you get the result,
-      // you shove it into the stocks slice of state (within entities).
+      .then(res => {
+        console.log(this.state.portfolio);
+        const tickerSymbols = Object.keys(this.state.portfolio).join(",").toLowerCase();
+        fetchBatchPrices(tickerSymbols);
+      })
     }
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(this.props);
   }
 
   render() {

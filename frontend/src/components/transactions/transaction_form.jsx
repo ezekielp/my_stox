@@ -44,7 +44,7 @@ class TransactionForm extends React.Component {
   render() {
     if (!this.props.currentStock) return null;
 
-    let { symbol, companyName, latestPrice, latestTime, change, changePercent, previousClose } = this.props.currentStock;
+    let { symbol, companyName, latestPrice, latestTime, change, changePercent } = this.props.currentStock;
 
     changePercent = changePercent * 100;
 
