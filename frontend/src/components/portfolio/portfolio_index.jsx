@@ -65,7 +65,9 @@ class PortfolioIndex extends React.Component {
 
     const portfolioStocks = Object.values(this.props.portfolio);
     const portfolioLis = portfolioStocks.map((stock, idx) => {
-      return <PortfolioIndexItem key={idx} stock={stock} />;
+      let currentTickerSymbol = stock.tickerSymbol;
+      let quote = this.props.quotes[currentTickerSymbol];
+      return <PortfolioIndexItem key={idx} stock={stock} quote={quote} />;
     });
 
     return (
