@@ -1,7 +1,5 @@
 import React from 'react'
 
-// import { fetchStockPrice } from '../../util/stocks_api_util';
-
 class TransactionForm extends React.Component {
   constructor(props) {
     super(props);
@@ -15,8 +13,25 @@ class TransactionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    // debugger;
+    const { currentStock, currentUser, createTransaction } = this.props;
+    const { symbol, companyName, latestPrice } = currentStock;
+
+    const newTransaction = {
+      user: currentUser.id,
+      companyName,
+      tickerSymbol: symbol,
+      numberOfShares: this.state.quantity,
+      shareValueAtTimeOfPurchase: latestPrice
+    }
+
+    createTransaction(newTransaction);
+
   }
+
+//   shareValueAtTimeOfPurchase: {
+//     type: Number,
+//       required: true
+//   }
 
   update(field) {
     return (e) => {
@@ -27,13 +42,37 @@ class TransactionForm extends React.Component {
   }
 
   render() {
-    const { currentStock } = this.props;
+    if (!this.props.currentStock) return null;
 
-    if (!currentStock) return null;
+    let { symbol, companyName, latestPrice, latestTime, change, changePercent, previousClose } = this.props.currentStock;
+
+    changePercent = changePercent * 100;
 
     return (
       <div className="transaction-form-container">
         <h2>Buy shares</h2>
+        <div className="stock-info-container">
+          <div className="company-name-container">
+            {companyName}
+          </div>
+          <div className="company-ticker-symbol-container">
+            {symbol}
+          </div>
+          <div className="stock-price-and-change-container">
+            <div className="stock-price-container">
+              {latestPrice} USD
+            </div>
+            <div className="raw-price-change-container">
+              {change}
+            </div>
+            <div className="percent-price-change-container">
+              {changePercent}%
+            </div>
+          </div>
+          <div className="price-quote-time-container">
+            {latestTime}
+          </div>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <input 
             type="text"

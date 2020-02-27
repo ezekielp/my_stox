@@ -1,17 +1,18 @@
 import { connect } from 'react-redux';
 
-import { fetchStock } from '../../actions/stock_actions';
+import { createTransaction } from '../../actions/transaction_actions';
 import TransactionForm from './transaction_form';
 
 const mapStateToProps = state => {
   return {
+    currentUser: state.session.user,
     currentStock: state.entities.stocks.currentStock
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchStock: tickerSymbol => dispatch(fetchStock(tickerSymbol))
+    createTransaction: transaction => dispatch(createTransaction(transaction))
   }
 }
 
