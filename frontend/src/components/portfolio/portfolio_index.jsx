@@ -8,6 +8,12 @@ class PortfolioIndex extends React.Component {
   constructor(props) {
     super(props)
 
+    let { accountBalance } = this.props;
+
+    this.state = {
+      accountBalance
+    }
+
   }
 
 
@@ -20,7 +26,12 @@ class PortfolioIndex extends React.Component {
           <h1 className="portfolio-index-header">Portfolio</h1>
           <div className="portfolio-index-container">
           </div>
-          <TransactionFormContainer />
+          <div className="portfolio-page-right-side-container">
+            <div className="account-balance-container">
+              Current account balance: 
+            </div>
+            <TransactionFormContainer />
+          </div>
         </div>
 
       </div>

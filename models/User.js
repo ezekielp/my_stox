@@ -13,7 +13,12 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
-  }},
+  },
+  accountBalance: {
+    type: Decimal128,
+    default: 5000.00
+  }
+  },
   {
       timestamps: true
   });

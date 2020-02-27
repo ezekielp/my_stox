@@ -5,7 +5,7 @@ import PortfolioIndex from './portfolio_index';
 
 const mapStateToProps = state => {
   return {
-    
+    currentUser: state.session.user
   }
 }
 
