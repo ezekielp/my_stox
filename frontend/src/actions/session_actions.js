@@ -61,3 +61,9 @@ export const updateUser = userInfo => dispatch => {
         .then(updatedUser => dispatch(receiveCurrentUser(updatedUser.data)))
         .catch(err => dispatch(receiveErrors(err)))
 }
+
+export const fetchUser = userId => dispatch => {
+    return SessionAPIUtil.fetchUser(userId)
+        .then(user => dispatch(receiveCurrentUser(user.data)))
+        .catch(err => dispatch(receiveErrors(err)))
+}

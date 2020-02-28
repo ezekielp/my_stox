@@ -51,8 +51,10 @@ class TransactionForm extends React.Component {
     createTransaction(newTransaction)
     .then(res => {
 
-      let updatedUser = currentUser;
+      // debugger;
+      let updatedUser = Object.assign({}, currentUser);
       updatedUser.accountBalance = newAccountBalance;
+      // console.log(updatedUser.newAccountBalance);
       updateUser(updatedUser);
 
     });

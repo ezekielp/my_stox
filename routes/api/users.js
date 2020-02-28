@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const passport = require('passport');
 
 router.post("/signup", (req, res) => {
     const { errors, isValid } = validateSignupInput(req.body);
@@ -104,17 +105,41 @@ router.patch("/:user_id", (req, res) => {
             id: _id,
             email,
             name,
-            accountBalance: {
-                $numberDecimal: accountBalance
-            }
+            accountBalance
         };
+        // console.log(json(passwordlessUser));
 
         res.json(passwordlessUpdatedUser)}
     );
 
-})
+});
 
+router.get(
+    "/:user_id",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        User.findById(req.params.user_id)
+            // .then(user => res.json(user))
+            .then(user => {
+                const { name, email, _id, accountBalance } = user;
 
+                const passwordlessUser = {
+                    id: _id,
+                    email,
+                    name,
+                    accountBalance
+                };
+                // console.log(json(passwordlessUser));
 
+                res.json(passwordlessUser)
+            })
+            .catch(err =>
+                res
+                    .status(404)
+                    .json({ noUserFound: "No user found with this user_id" })
+            );
+    }
+
+)
 
 module.exports = router;

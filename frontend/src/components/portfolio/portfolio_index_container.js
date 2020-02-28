@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import { fetchTransactions } from '../../actions/transaction_actions';
 import { fetchBatchPrices } from '../../actions/stock_actions';
+import { fetchUser } from '../../actions/session_actions';
 import PortfolioIndex from './portfolio_index';
 
 const mapStateToProps = state => {
@@ -33,6 +34,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchUser: userId => dispatch(fetchUser(userId)),
     fetchTransactions: userId => dispatch(fetchTransactions(userId)),
     fetchBatchPrices: tickerSymbols => dispatch(fetchBatchPrices(tickerSymbols))
   }

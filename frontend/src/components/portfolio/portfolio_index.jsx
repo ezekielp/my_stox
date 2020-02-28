@@ -21,7 +21,7 @@ class PortfolioIndex extends React.Component {
   }
 
   componentDidMount() {
-    const { currentUser, fetchTransactions, fetchBatchPrices } = this.props;
+    const { currentUser, fetchUser, fetchTransactions, fetchBatchPrices } = this.props;
 
     fetchTransactions(currentUser.id)
     .then(transactionsAction => {
@@ -49,11 +49,22 @@ class PortfolioIndex extends React.Component {
         fetchBatchPrices(tickerSymbols);
       }
     })
+    .then(res => {
+      fetchUser(currentUser.id);
+    })
+  }
+
+  componentDidUpdate(prevProps) {
+    const { fetchUser, transactions, currentUser } = this.props;
+    if (prevProps.transactions.length !== transactions.length) {
+      fetchUser(currentUser.id);
+    }
   }
 
   render() {
 
     // const accountBalance = this.state.accountBalance.toFixed(2);
+    // debugger;
     const accountBalance = parseFloat(this.props.currentUser.accountBalance.$numberDecimal).toFixed(2);
 
     const portfolioStocks = Object.values(this.props.portfolio);
