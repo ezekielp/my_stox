@@ -4,8 +4,8 @@ import { fetchTransactions } from '../../actions/transaction_actions';
 import { fetchBatchPrices } from '../../actions/stock_actions';
 import PortfolioIndex from './portfolio_index';
 
-
 const mapStateToProps = state => {
+  // debugger;
   const transactions = Object.values(state.entities.transactions);
 
   let portfolio = {};

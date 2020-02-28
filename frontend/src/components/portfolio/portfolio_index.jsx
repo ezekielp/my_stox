@@ -21,41 +21,40 @@ class PortfolioIndex extends React.Component {
   }
 
   componentDidMount() {
-    const { transactions, currentUser, fetchTransactions, fetchBatchPrices } = this.props;
+    const { currentUser, fetchTransactions, fetchBatchPrices } = this.props;
 
-    // if (!transactions[0]) {
-      fetchTransactions(currentUser.id)
-      .then(transactionsAction => {
-        const fetchedTransactions = Object.values(transactionsAction.transactions.data);
-        let portfolio = this.state.portfolio;
+    fetchTransactions(currentUser.id)
+    .then(transactionsAction => {
+      const fetchedTransactions = Object.values(transactionsAction.transactions.data);
+      let portfolio = this.state.portfolio;
 
-        fetchedTransactions.forEach(transaction => {
-          const { companyName, tickerSymbol, numberOfShares } = transaction;
+      fetchedTransactions.forEach(transaction => {
+        const { companyName, tickerSymbol, numberOfShares } = transaction;
 
-          if (!this.state.portfolio[tickerSymbol]) {
-            portfolio[tickerSymbol] = { tickerSymbol, companyName, numberOfShares };
-          } else {
-            portfolio[tickerSymbol].numberOfShares += numberOfShares;
-          }
-
-          this.setState({
-            portfolio
-          })
-
-        })
-      })
-      .then(res => {
-        const tickerSymbols = Object.keys(this.state.portfolio).join(",").toLowerCase();
-        if (tickerSymbols[0]) {
-          fetchBatchPrices(tickerSymbols);
+        if (!this.state.portfolio[tickerSymbol]) {
+          portfolio[tickerSymbol] = { tickerSymbol, companyName, numberOfShares };
+        } else {
+          portfolio[tickerSymbol].numberOfShares += numberOfShares;
         }
+
+        this.setState({
+          portfolio
+        })
+
       })
-    // }
+    })
+    .then(res => {
+      const tickerSymbols = Object.keys(this.state.portfolio).join(",").toLowerCase();
+      if (tickerSymbols[0]) {
+        fetchBatchPrices(tickerSymbols);
+      }
+    })
   }
 
   render() {
 
-    const accountBalance = this.state.accountBalance.toFixed(2);
+    // const accountBalance = this.state.accountBalance.toFixed(2);
+    const accountBalance = parseFloat(this.props.currentUser.accountBalance.$numberDecimal).toFixed(2);
 
     const portfolioStocks = Object.values(this.props.portfolio);
     const portfolioLis = portfolioStocks.map((stock, idx) => {

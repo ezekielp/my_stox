@@ -92,4 +92,29 @@ router.post("/login", (req, res) => {
     });
 });
 
+router.patch("/:user_id", (req, res) => {
+    const updatedUser = req.body;
+
+    User.findByIdAndUpdate(updatedUser.id, updatedUser, (err) => {
+        if (err) res.status(400).send(err);
+    }).then(updatedUser => {
+        const { name, email, _id, accountBalance } = updatedUser;
+
+        const passwordlessUpdatedUser = {
+            id: _id,
+            email,
+            name,
+            accountBalance: {
+                $numberDecimal: accountBalance
+            }
+        };
+
+        res.json(passwordlessUpdatedUser)}
+    );
+
+})
+
+
+
+
 module.exports = router;

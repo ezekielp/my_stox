@@ -47,30 +47,17 @@ router.post(
       companyName, tickerSymbol, numberOfShares, shareValueAtTimeOfPurchase
     })
 
-    const purchasePrice = numberOfShares * shareValueAtTimeOfPurchase;
-    const newUserBalance = parseFloat(user.accountBalance.$numberDecimal) - purchasePrice;
-    let updatedUser = user;
-    updatedUser.accountBalance = newUserBalance;
+    // const purchasePrice = numberOfShares * shareValueAtTimeOfPurchase;
+    // const newUserBalance = parseFloat(user.accountBalance.$numberDecimal) - purchasePrice;
+    // let updatedUser = user;
+    // updatedUser.accountBalance = newUserBalance;
 
-    User.findByIdAndUpdate(user.id, updatedUser, (err) => {
-      if (err) res.status(400).send(err);
-    });
+    // User.findByIdAndUpdate(user.id, updatedUser, (err) => {
+    //   if (err) res.status(400).send(err);
+    // });
 
     newTransaction.save().then(transaction => res.json(transaction));
   }
 );
-
-// router.get(
-//   "/:ticker_symbol",
-//   passport.authenticate("jwt", { session: false }),
-//   (req, res) => {
-//     const tickerSymbol = req.params.ticker_symbol;
-//     const apiKey = process.env.IEX_API_KEY_FRONTEND;
-
-//     const url = `https://cloud.iexapis.com/stable/stock/${tickerSymbol}/quote?token=${apiKey}`;
-
-//     axios.get(url).then(stockData => stockData);
-//   }
-// )
 
 module.exports = router;

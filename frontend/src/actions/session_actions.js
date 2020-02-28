@@ -55,3 +55,9 @@ export const logout = () => dispatch => {
     SessionAPIUtil.setAuthToken(false);
     dispatch(logoutUser());
 }
+
+export const updateUser = userInfo => dispatch => {
+    return SessionAPIUtil.update(userInfo)
+        .then(updatedUser => dispatch(receiveCurrentUser(updatedUser.data)))
+        .catch(err => dispatch(receiveErrors(err)))
+}

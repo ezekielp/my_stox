@@ -7,11 +7,8 @@ class TransactionsIndex extends React.Component {
 
 
   componentDidMount() {
-    const { currentUser, transactions, fetchTransactions } = this.props;
+    const { currentUser, fetchTransactions } = this.props;
     fetchTransactions(currentUser.id);
-    // if (!transactions[0]) {
-    //   fetchTransactions(currentUser.id);
-    // }
   }
 
   render() {

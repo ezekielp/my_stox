@@ -15,7 +15,7 @@ class TransactionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    const { currentStock, currentUser, createTransaction, receiveCurrentStockQuote } = this.props;
+    const { currentStock, currentUser, createTransaction, receiveCurrentStockQuote, updateUser, updateUserAccountBalance } = this.props;
     const { symbol, companyName, latestPrice } = currentStock;
     const { quantity } = this.state;
 
@@ -27,15 +27,18 @@ class TransactionForm extends React.Component {
       return;
     }
 
+    const userAccountBalance = parseFloat(currentUser.accountBalance.$numberDecimal);
     const totalPurchasePrice = quantity * latestPrice;
 
-    if (totalPurchasePrice > parseFloat(currentUser.accountBalance.$numberDecimal)) {
+    if (totalPurchasePrice > userAccountBalance) {
       const errors = ["Inadequate funds for this purchase!"];
       this.setState({
         errors
       });
       return;
     }
+
+    const newAccountBalance = userAccountBalance - totalPurchasePrice;
 
     const newTransaction = {
       user: currentUser,
@@ -45,20 +48,21 @@ class TransactionForm extends React.Component {
       shareValueAtTimeOfPurchase: latestPrice
     }
 
-    createTransaction(newTransaction);
+    createTransaction(newTransaction)
+    .then(res => {
+
+      let updatedUser = currentUser;
+      updatedUser.accountBalance = newAccountBalance;
+      updateUser(updatedUser);
+
+    });
     receiveCurrentStockQuote(this.props.currentStock);
 
     this.setState({
-      quantity: '',
-      // showForm: false
+      quantity: ''
     });
 
   }
-
-//   shareValueAtTimeOfPurchase: {
-//     type: Number,
-//       required: true
-//   }
 
   renderErrors() {
     const { errors } = this.state;
