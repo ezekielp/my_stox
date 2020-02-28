@@ -12,6 +12,10 @@
   margin-bottom: 9px;
 }
 
+.stock-lookup-form-btn {
+  margin-left: 15px;
+}
+
 
 /* TRANSACTION FORM */
 
@@ -25,4 +29,74 @@
 .transaction-form-header {
   font-size: 24px;
   font-weight: 700;
+  margin-bottom: 6px;
 }
+
+.company-name-container {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.stock-price-container {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.price-change-container {
+  margin-bottom: 10px;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.transaction-form-btn {
+  margin-left: 15px;
+}
+
+
+/* TRANSACTIONS INDEX */
+
+.transactions-index-header {
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-weight: 700;
+  margin-top: 30px;
+}
+
+.transactions-index-container {
+  width: 75%;
+  margin-left: 50px;
+  margin-right: 30px;  
+}
+
+/* .transaction-index-li {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: 45px;
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  margin-top: 20px;
+} */
+
+.transaction-index-li {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 45px;
+    text-align: center;
+    margin-bottom: 29px;
+    border-top: 1px solid lightgray;
+    padding-top: 13px;
+}
+
+.transactions-index-headers {
+  font-weight: 700;
+  margin-bottom: 29px;
+}
+
+
+

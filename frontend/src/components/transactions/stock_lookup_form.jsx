@@ -45,16 +45,16 @@ class StockLookupForm extends React.Component {
     return (
       <div className="stock-lookup-form-container">
         <h2 className="stock-lookup-message">Enter a ticker symbol to see current stock information</h2>
-        <form onSubmit={this.handleSubmit}>
+        <form className="stock-lookup-form" onSubmit={this.handleSubmit}>
           <input
             type="text"
-            className="transaction-form-input"
+            className="stock-lookup-form-input"
             placeholder="Ticker symbol"
             onChange={this.update('tickerSymbol')} 
             value={this.state.tickerSymbol} />
           <input
             type="submit"
-            className="transaction-form-btn"
+            className="stock-lookup-form-btn"
             value="Submit" />
         </form>
         {this.renderErrors()}

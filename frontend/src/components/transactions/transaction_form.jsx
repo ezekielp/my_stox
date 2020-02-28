@@ -94,33 +94,27 @@ class TransactionForm extends React.Component {
     if (!this.props.currentStock) return null;
     if (!this.state.showForm) return null;
 
-    let { symbol, companyName, latestPrice, latestTime, change, changePercent } = this.props.currentStock;
+    let { symbol, companyName, latestPrice, change, changePercent } = this.props.currentStock;
 
-    changePercent = changePercent * 100;
+    let changeSymbol = (change < 0) ? "" : "+";
+    let changeColorClass = (change < 0) ? "red" : "green";
+
+    changePercent = (changePercent * 100).toFixed(3);
 
     return (
       <div className="transaction-form-container">
         <h2 className="transaction-form-header">Buy shares</h2>
         <div className="stock-info-container">
           <div className="company-name-container">
-            {companyName}
-          </div>
-          <div className="company-ticker-symbol-container">
-            {symbol}
+            {companyName} ({symbol})
           </div>
           <div className="stock-price-and-change-container">
             <div className="stock-price-container">
               {latestPrice} USD
             </div>
-            <div className="raw-price-change-container">
-              {change}
+            <div className={`price-change-container ${changeColorClass}`}>
+              {changeSymbol}{change} ({changePercent}%)
             </div>
-            <div className="percent-price-change-container">
-              {changePercent}%
-            </div>
-          </div>
-          <div className="price-quote-time-container">
-            {latestTime}
           </div>
         </div>
         <form onSubmit={this.handleSubmit}>
