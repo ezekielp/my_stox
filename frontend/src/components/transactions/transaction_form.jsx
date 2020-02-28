@@ -11,17 +11,30 @@ class TransactionForm extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
   handleSubmit(e) {
     const { currentStock, currentUser, createTransaction, receiveCurrentStockQuote } = this.props;
     const { symbol, companyName, latestPrice } = currentStock;
+    const { quantity } = this.state;
+
+    const totalPurchasePrice = quantity * latestPrice;
+    if (totalPurchasePrice > parseFloat(currentUser.accountBalance.$numberDecimal)) {
+      const errors = ["Inadequate funds for this purchase!"];
+      this.setState({
+        errors
+      });
+      console.log(errors);
+      console.log(this.state.errors);
+      return;
+    }
 
     const newTransaction = {
       user: currentUser.id,
       companyName,
       tickerSymbol: symbol,
-      numberOfShares: this.state.quantity,
+      numberOfShares: quantity,
       shareValueAtTimeOfPurchase: latestPrice
     }
 
@@ -39,6 +52,22 @@ class TransactionForm extends React.Component {
 //     type: Number,
 //       required: true
 //   }
+
+  renderErrors() {
+    const { errors } = this.state;
+    if (errors[0]) {
+      let errorsLis = this.state.errors.map((err, idx) => {
+        return <li key={idx}>
+          {err}
+        </li>
+      });
+      return (
+        <ul>{errorsLis}</ul>
+      )
+    } else {
+      return null;
+    }
+  }
 
   update(field) {
     return (e) => {
@@ -94,6 +123,7 @@ class TransactionForm extends React.Component {
             className="transaction-form-btn"
             value="Buy" />
         </form>
+        {this.renderErrors()}
       </div>
     )
   }

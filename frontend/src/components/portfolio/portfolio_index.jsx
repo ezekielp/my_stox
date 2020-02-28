@@ -26,7 +26,6 @@ class PortfolioIndex extends React.Component {
     if (!transactions[0]) {
       fetchTransactions(currentUser.id)
       .then(transactionsAction => {
-        console.log(transactionsAction);
         const fetchedTransactions = Object.values(transactionsAction.transactions.data);
         let portfolio = this.state.portfolio;
 
@@ -47,7 +46,9 @@ class PortfolioIndex extends React.Component {
       })
       .then(res => {
         const tickerSymbols = Object.keys(this.state.portfolio).join(",").toLowerCase();
-        fetchBatchPrices(tickerSymbols);
+        if (tickerSymbols[0]) {
+          fetchBatchPrices(tickerSymbols);
+        }
       })
     }
   }
