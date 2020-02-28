@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './transactions.css';
 
 class StockLookupForm extends React.Component {
   constructor(props) {
@@ -42,8 +43,8 @@ class StockLookupForm extends React.Component {
 
   render() {
     return (
-      <div className="transaction-form-container">
-        <h2>Enter a ticker symbol to see current stock price</h2>
+      <div className="stock-lookup-form-container">
+        <h2 className="stock-lookup-message">Enter a ticker symbol to see current stock information</h2>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"

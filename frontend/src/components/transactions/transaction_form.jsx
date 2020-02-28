@@ -100,7 +100,7 @@ class TransactionForm extends React.Component {
 
     return (
       <div className="transaction-form-container">
-        <h2>Buy shares</h2>
+        <h2 className="transaction-form-header">Buy shares</h2>
         <div className="stock-info-container">
           <div className="company-name-container">
             {companyName}

@@ -1,0 +1,28 @@
+/* STOCK LOOKUP FORM */
+
+.stock-lookup-form-container {
+  box-sizing: border-box;
+  border: 1px solid black;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 5px;
+}
+
+.stock-lookup-message {
+  margin-bottom: 9px;
+}
+
+
+/* TRANSACTION FORM */
+
+.transaction-form-container {
+  box-sizing: border-box;
+  border: 1px solid black;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.transaction-form-header {
+  font-size: 24px;
+  font-weight: 700;
+}

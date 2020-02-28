@@ -16,6 +16,16 @@
   margin-right: 30px;  
 }
 
+.portfolio-index-headers {
+  font-weight: 700;
+}
+
+.portfolio-page-right-side-container {
+  width: 40%;
+  margin-right: 50px;
+  margin-left: 30px;
+}
+
 /* PORTFOLIO INDEX ITEM */
 
 .portfolio-index-li {
@@ -27,3 +37,18 @@
   /* line-height: 45px; */
   margin-top: 20px;
 }
+
+
+/* ACCOUNT BALANCE */
+
+.account-balance-container {
+  padding-top: 20px;
+  margin-bottom: 25px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+
+
+
