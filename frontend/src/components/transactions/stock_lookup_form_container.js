@@ -5,7 +5,7 @@ import StockLookupForm from './stock_lookup_form';
 
 const mapStateToProps = state => {
   return {
-
+    errors: state.errors.stocks
   }
 }
 

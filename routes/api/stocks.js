@@ -15,7 +15,10 @@ router.get(
     axios.get(url).then(stockData => {
       res.send(stockData.data);
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      res.send(err);
+    });
   }
 );
 

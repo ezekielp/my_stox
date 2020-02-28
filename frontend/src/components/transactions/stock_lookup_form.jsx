@@ -5,11 +5,11 @@ class StockLookupForm extends React.Component {
     super(props);
 
     this.state = {
-      tickerSymbol: '',
-      errors: []
+      tickerSymbol: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
   handleSubmit(e) {
@@ -17,6 +17,19 @@ class StockLookupForm extends React.Component {
     this.setState({
       tickerSymbol: ''
     })
+  }
+
+  renderErrors() {
+    const { errors } = this.props;
+    if (errors) {
+      return (
+        <div className="error-message">
+          Oops, something went wrong! Please enter a valid ticker symbol and try again.
+        </div>
+      )
+    } else {
+      return null;
+    }
   }
 
   update(field) {
@@ -43,6 +56,7 @@ class StockLookupForm extends React.Component {
             className="transaction-form-btn"
             value="Submit" />
         </form>
+        {this.renderErrors()}
       </div>
     )
   }
