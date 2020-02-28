@@ -19,14 +19,21 @@ class TransactionForm extends React.Component {
     const { symbol, companyName, latestPrice } = currentStock;
     const { quantity } = this.state;
 
+    if (!Number.isInteger(quantity)) {
+      const errors = ["Please enter a whole number of shares"];
+      this.setState({
+        errors
+      });
+      return;
+    }
+
     const totalPurchasePrice = quantity * latestPrice;
+
     if (totalPurchasePrice > parseFloat(currentUser.accountBalance.$numberDecimal)) {
       const errors = ["Inadequate funds for this purchase!"];
       this.setState({
         errors
       });
-      console.log(errors);
-      console.log(this.state.errors);
       return;
     }
 
