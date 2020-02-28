@@ -12,26 +12,30 @@ class Navbar extends React.Component {
         const { currentUser, logout } = this.props;
 
         return (
-
-            <ul className="navbar-ul">
-                <li>Hello, {currentUser.name}!</li>
-                <li>
-                    <Link to="/portfolio">
-                        Portfolio
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/transactions">
-                        Transactions
-                    </Link>
-                </li>
-                <li
-                    onClick={() => logout()}
-                    className="logout-li"
-                >
-                    Logout
-                </li>
-            </ul>
+            <div className="navbar-container">
+                <div className="navbar-header">
+                    MyStox
+                </div>
+                <ul className="navbar-ul">
+                    <li>Hello, {currentUser.name}!</li>
+                    <li>
+                        <Link to="/portfolio">
+                            Portfolio
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/transactions">
+                            Transactions
+                        </Link>
+                    </li>
+                    <li
+                        onClick={() => logout()}
+                        className="logout-li"
+                    >
+                        Logout
+                    </li>
+                </ul>
+            </div>
 
 
         )

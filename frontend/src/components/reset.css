@@ -6,6 +6,7 @@ h1, h2, p, strong, em, a, ul, li {
   outline: 0;
   box-sizing: border-box;
   font: inherit;
+  font-family: 'Ubuntu';
   text-decoration: inherit;
   text-align: inherit;
   color: inherit;

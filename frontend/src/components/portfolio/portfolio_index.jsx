@@ -63,8 +63,6 @@ class PortfolioIndex extends React.Component {
 
   render() {
 
-    // const accountBalance = this.state.accountBalance.toFixed(2);
-    // debugger;
     const accountBalance = parseFloat(this.props.currentUser.accountBalance.$numberDecimal).toFixed(2);
 
     const portfolioStocks = Object.values(this.props.portfolio);
@@ -80,6 +78,20 @@ class PortfolioIndex extends React.Component {
         <div className="portfolio-page-below-nav-container">
           <div className="portfolio-index-container">
             <h1 className="portfolio-index-header">Portfolio</h1>
+            <li className="portfolio-index-li portfolio-index-headers">
+              <div className="portfolio-index-headers-company-name">
+                Company
+              </div>
+              <div className="portfolio-index-headers-ticker-symbol">
+                Ticker Symbol
+              </div>
+              <div className="portfolio-index-headers-number-of-shares">
+                Number of Shares
+              </div>
+              <div className="portfolio-index-headers-total-value">
+                Total Current Value
+              </div>
+            </li>
             {portfolioLis}
           </div>
           <div className="portfolio-page-right-side-container">
