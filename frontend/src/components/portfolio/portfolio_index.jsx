@@ -23,7 +23,7 @@ class PortfolioIndex extends React.Component {
   componentDidMount() {
     const { transactions, currentUser, fetchTransactions, fetchBatchPrices } = this.props;
 
-    if (!transactions[0]) {
+    // if (!transactions[0]) {
       fetchTransactions(currentUser.id)
       .then(transactionsAction => {
         const fetchedTransactions = Object.values(transactionsAction.transactions.data);
@@ -50,14 +50,7 @@ class PortfolioIndex extends React.Component {
           fetchBatchPrices(tickerSymbols);
         }
       })
-    }
-  }
-
-  componentDidUpdate() {
-    // const quoteTickerSymbols = Object.keys(this.props.quotes);
-
-    // const tickerSymbols = Object.keys(this.state.portfolio).join(",").toLowerCase();
-    // fetchBatchPrices(tickerSymbols);
+    // }
   }
 
   render() {

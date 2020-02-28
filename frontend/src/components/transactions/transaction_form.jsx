@@ -19,7 +19,7 @@ class TransactionForm extends React.Component {
     const { symbol, companyName, latestPrice } = currentStock;
     const { quantity } = this.state;
 
-    if (!Number.isInteger(quantity)) {
+    if (!Number.isInteger(parseInt(quantity))) {
       const errors = ["Please enter a whole number of shares"];
       this.setState({
         errors
@@ -38,7 +38,7 @@ class TransactionForm extends React.Component {
     }
 
     const newTransaction = {
-      user: currentUser.id,
+      user: currentUser,
       companyName,
       tickerSymbol: symbol,
       numberOfShares: quantity,
@@ -50,7 +50,7 @@ class TransactionForm extends React.Component {
 
     this.setState({
       quantity: '',
-      showForm: false
+      // showForm: false
     });
 
   }
@@ -85,7 +85,6 @@ class TransactionForm extends React.Component {
   }
 
   render() {
-    // debugger;
     if (!this.props.currentStock) return null;
     if (!this.state.showForm) return null;
 

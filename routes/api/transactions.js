@@ -43,8 +43,18 @@ router.post(
     const { user, companyName, tickerSymbol, numberOfShares, shareValueAtTimeOfPurchase } = req.body;
 
     const newTransaction = new Transaction({
-      user, companyName, tickerSymbol, numberOfShares, shareValueAtTimeOfPurchase
+      user: user.id,
+      companyName, tickerSymbol, numberOfShares, shareValueAtTimeOfPurchase
     })
+
+    const purchasePrice = numberOfShares * shareValueAtTimeOfPurchase;
+    const newUserBalance = parseFloat(user.accountBalance.$numberDecimal) - purchasePrice;
+    let updatedUser = user;
+    updatedUser.accountBalance = newUserBalance;
+
+    User.findByIdAndUpdate(user.id, updatedUser, (err) => {
+      if (err) res.status(400).send(err);
+    });
 
     newTransaction.save().then(transaction => res.json(transaction));
   }
