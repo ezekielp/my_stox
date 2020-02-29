@@ -3,9 +3,11 @@ import SessionForm from './session_form';
 import { login, signup, clearErrors } from '../../actions/session_actions';
 
 const mapStateToProps = state => {
+    const errors = state.errors.session ? Object.values(state.errors.session) : null;
+
     return {
         isAuthenticated: state.session.isAuthenticated,
-        // errors: Object.values(state.errors)
+        errors
     }
 }
 

@@ -107,7 +107,6 @@ router.patch("/:user_id", (req, res) => {
             name,
             accountBalance
         };
-        // console.log(json(passwordlessUser));
 
         res.json(passwordlessUpdatedUser)}
     );
@@ -119,7 +118,6 @@ router.get(
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         User.findById(req.params.user_id)
-            // .then(user => res.json(user))
             .then(user => {
                 const { name, email, _id, accountBalance } = user;
 
@@ -129,7 +127,6 @@ router.get(
                     name,
                     accountBalance
                 };
-                // console.log(json(passwordlessUser));
 
                 res.json(passwordlessUser)
             })

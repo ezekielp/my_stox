@@ -11,7 +11,7 @@ export const receiveCurrentUser = currentUser => ({
     currentUser
 });
 
-export const receiveErrors = errors => ({
+export const receiveSessionErrors = errors => ({
     type: RECEIVE_SESSION_ERRORS,
     errors
 })
@@ -33,7 +33,7 @@ export const login = user => dispatch => {
         dispatch(receiveCurrentUser(decoded));
     })
     .catch(err => {
-        dispatch(receiveErrors(err.response.data));
+        dispatch(receiveSessionErrors(err.response.data));
     })
 }
 
@@ -46,7 +46,7 @@ export const signup = user => dispatch => {
         dispatch(receiveCurrentUser(decoded));
     })
     .catch(err => {
-        dispatch(receiveErrors(err.response.data));
+        dispatch(receiveSessionErrors(err.response.data));
     })
 }
 
@@ -59,11 +59,11 @@ export const logout = () => dispatch => {
 export const updateUser = userInfo => dispatch => {
     return SessionAPIUtil.update(userInfo)
         .then(updatedUser => dispatch(receiveCurrentUser(updatedUser.data)))
-        .catch(err => dispatch(receiveErrors(err)))
+        .catch(err => dispatch(receiveSessionErrors(err)))
 }
 
 export const fetchUser = userId => dispatch => {
     return SessionAPIUtil.fetchUser(userId)
         .then(user => dispatch(receiveCurrentUser(user.data)))
-        .catch(err => dispatch(receiveErrors(err)))
+        .catch(err => dispatch(receiveSessionErrors(err)))
 }

@@ -9,13 +9,13 @@ class SessionForm extends React.Component {
             formType: 'Signup',
             name: '',
             email: '',
-            password: '',
-            errors: this.props.errors
+            password: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderSignupForm = this.renderSignupForm.bind(this);
         this.renderLoginForm = this.renderLoginForm.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
     }
 
     update(field) {
@@ -57,6 +57,7 @@ class SessionForm extends React.Component {
                 formType: 'Signup'
             })
         }
+        this.props.clearErrors();
     }
 
     renderSignupForm() {
@@ -68,6 +69,7 @@ class SessionForm extends React.Component {
             return (
                 <div className="session-form-container">
                     <h3>Sign Up</h3>
+                    {this.renderErrors()}
                     <form className="session-form" onSubmit={this.handleSubmit}>
                         <input
                             className="session-input"
@@ -106,6 +108,7 @@ class SessionForm extends React.Component {
             return (
               <div className="session-form-container">
                 <h3>Log In</h3>
+                {this.renderErrors()}
                 <form className="session-form" onSubmit={this.handleSubmit}>
                   <input
                     className="session-input"
@@ -133,6 +136,20 @@ class SessionForm extends React.Component {
                 </button>
               </div>
             );
+        }
+    }
+
+    renderErrors() {
+        // debugger;
+        const { errors } = this.props;
+        if (errors) {
+            return (
+                <div className="session-errors">
+                    {errors}
+                </div>
+            )
+        } else {
+            return null;
         }
     }
 
