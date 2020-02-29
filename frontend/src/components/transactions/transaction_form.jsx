@@ -15,14 +15,19 @@ class TransactionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    const { currentStock, currentUser, createTransaction, receiveCurrentStockQuote, updateUser, updateUserAccountBalance } = this.props;
+    const { currentStock, currentUser, createTransaction, receiveCurrentStockQuote, updateUser, updateUserAccountBalance, receiveTransactionErrors } = this.props;
     const { symbol, companyName, latestPrice } = currentStock;
     const { quantity } = this.state;
 
     if (!Number.isInteger(parseFloat(quantity))) {
-      const errors = ["Please enter a whole number of shares"];
+      const errors = "Please enter a whole number of shares";
+      receiveTransactionErrors(errors);
+      // const errors = ["Please enter a whole number of shares"];
+      // this.setState({
+      //   errors
+      // });
       this.setState({
-        errors
+        quantity: ''
       });
       return;
     }
@@ -31,9 +36,14 @@ class TransactionForm extends React.Component {
     const totalPurchasePrice = quantity * latestPrice;
 
     if (totalPurchasePrice > userAccountBalance) {
-      const errors = ["Inadequate funds for this purchase!"];
+      const errors = "Inadequate funds for this purchase!";
+      receiveTransactionErrors(errors);
+      // const errors = ["Inadequate funds for this purchase!"];
+      // this.setState({
+      //   errors
+      // });
       this.setState({
-        errors
+        quantity: ''
       });
       return;
     }
@@ -50,11 +60,8 @@ class TransactionForm extends React.Component {
 
     createTransaction(newTransaction)
     .then(res => {
-
-      // debugger;
       let updatedUser = Object.assign({}, currentUser);
       updatedUser.accountBalance = newAccountBalance;
-      // console.log(updatedUser.newAccountBalance);
       updateUser(updatedUser);
 
     });
@@ -67,16 +74,21 @@ class TransactionForm extends React.Component {
   }
 
   renderErrors() {
-    const { errors } = this.state;
-    if (errors[0]) {
-      let errorsLis = this.state.errors.map((err, idx) => {
-        return <li key={idx}>
-          {err}
-        </li>
-      });
+    const { errors } = this.props;
+    if (errors) {
       return (
-        <ul className="errors">{errorsLis}</ul>
+        <div className="errors">
+          {errors}
+        </div>
       )
+      // let errorsLis = this.props.errors.map((err, idx) => {
+      //   return <li key={idx}>
+      //     {err}
+      //   </li>
+      // });
+      // return (
+      //   <ul className="errors">{errorsLis}</ul>
+      // )
     } else {
       return null;
     }

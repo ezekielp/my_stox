@@ -33,11 +33,18 @@
   grid-template-columns: repeat(4, 1fr);
   height: 45px;
   text-align: center;
-  border-bottom: 1px solid lightgray;
-  /* line-height: 45px; */
-  margin-top: 20px;
+  margin-bottom: 29px;
+  border-top: 1px solid lightgray;
+  padding-top: 13px;
 }
-
+/* .portfolio-index-li {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 45px;
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  margin-top: 20px;
+} */
 
 /* ACCOUNT BALANCE */
 

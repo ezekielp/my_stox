@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import { fetchStock } from '../../actions/stock_actions';
+import { clearErrors } from '../../actions/session_actions';
 import StockLookupForm from './stock_lookup_form';
 
 const mapStateToProps = state => {

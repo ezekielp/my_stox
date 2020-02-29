@@ -2,6 +2,7 @@ import * as TransactionsAPIUtil from '../util/transactions_api_util';
 
 export const RECEIVE_ALL_TRANSACTIONS = "RECEIVE_ALL_TRANSACTIONS";
 export const RECEIVE_TRANSACTION = "RECEIVE_TRANSACTION";
+export const RECEIVE_TRANSACTION_ERRORS = "RECEIVE_TRANSACTION_ERRORS";
 
 const receiveAllTransactions = transactions => {
   return {
@@ -14,6 +15,13 @@ const receiveTransaction = transaction => {
   return {
     type: RECEIVE_TRANSACTION,
     transaction
+  }
+}
+
+export const receiveTransactionErrors = errors => {
+  return {
+    type: RECEIVE_TRANSACTION_ERRORS,
+    errors
   }
 }
 
