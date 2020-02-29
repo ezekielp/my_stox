@@ -9,7 +9,7 @@ class LandingPage extends React.Component {
 
     render() {
         return (
-          <div>
+          <div className="landing-page-container">
             <h1 className="main-heading">MyStox</h1>
             <SessionFormContainer />
           </div>

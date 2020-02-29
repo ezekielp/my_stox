@@ -85,7 +85,7 @@ class SessionForm extends React.Component {
                             placeholder="Password"
                             onChange={this.update('password')} />
                         <input
-                            type="submit" className="session-submit-btn" value="Signup"/>
+                            type="submit" className="session-submit-btn" value="Sign Up"/>
                     </form>
                     <button
                         className="toggle-session-form-btn"
@@ -122,7 +122,7 @@ class SessionForm extends React.Component {
                   <input
                     type="submit"
                     className="session-submit-btn"
-                    value="Login"
+                    value="Log In"
                   />
                 </form>
                 <button
