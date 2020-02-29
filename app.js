@@ -9,7 +9,14 @@ const transactions = require("./routes/api/transactions");
 const stocks = require("./routes/api/stocks");
 const passportAuth = require("./config/passport");
 require('dotenv').config();
-// Now, when writing your API call, you can use 'process.env.IEX_API_KEY'
+const path = require('path');
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })
+}
 
 mongoose
   .connect(db, { useNewUrlParser: true })
