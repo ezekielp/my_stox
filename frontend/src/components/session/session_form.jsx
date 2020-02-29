@@ -140,7 +140,6 @@ class SessionForm extends React.Component {
     }
 
     renderErrors() {
-        // debugger;
         const { errors } = this.props;
         if (errors) {
             return (

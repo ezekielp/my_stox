@@ -22,10 +22,6 @@ class TransactionForm extends React.Component {
     if (!Number.isInteger(parseFloat(quantity))) {
       const errors = "Please enter a whole number of shares";
       receiveTransactionErrors(errors);
-      // const errors = ["Please enter a whole number of shares"];
-      // this.setState({
-      //   errors
-      // });
       this.setState({
         quantity: ''
       });
@@ -38,10 +34,6 @@ class TransactionForm extends React.Component {
     if (totalPurchasePrice > userAccountBalance) {
       const errors = "Inadequate funds for this purchase!";
       receiveTransactionErrors(errors);
-      // const errors = ["Inadequate funds for this purchase!"];
-      // this.setState({
-      //   errors
-      // });
       this.setState({
         quantity: ''
       });
@@ -81,14 +73,6 @@ class TransactionForm extends React.Component {
           {errors}
         </div>
       )
-      // let errorsLis = this.props.errors.map((err, idx) => {
-      //   return <li key={idx}>
-      //     {err}
-      //   </li>
-      // });
-      // return (
-      //   <ul className="errors">{errorsLis}</ul>
-      // )
     } else {
       return null;
     }
