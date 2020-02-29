@@ -6,7 +6,8 @@ class StockLookupForm extends React.Component {
     super(props);
 
     this.state = {
-      tickerSymbol: ''
+      tickerSymbol: '',
+      errors: this.props.errors
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,7 +25,7 @@ class StockLookupForm extends React.Component {
     const { errors } = this.props;
     if (errors) {
       return (
-        <div className="error-message">
+        <div className="errors">
           Oops, something went wrong! Please enter a valid ticker symbol and try again.
         </div>
       )

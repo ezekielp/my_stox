@@ -98,5 +98,8 @@
   margin-bottom: 29px;
 }
 
-
+.errors {
+  color: red;
+  margin-top: 9px;
+}
 

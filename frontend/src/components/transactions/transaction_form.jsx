@@ -19,7 +19,7 @@ class TransactionForm extends React.Component {
     const { symbol, companyName, latestPrice } = currentStock;
     const { quantity } = this.state;
 
-    if (!Number.isInteger(parseInt(quantity))) {
+    if (!Number.isInteger(parseFloat(quantity))) {
       const errors = ["Please enter a whole number of shares"];
       this.setState({
         errors
@@ -75,7 +75,7 @@ class TransactionForm extends React.Component {
         </li>
       });
       return (
-        <ul>{errorsLis}</ul>
+        <ul className="errors">{errorsLis}</ul>
       )
     } else {
       return null;
